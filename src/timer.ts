@@ -20,8 +20,6 @@ export class Timer {
 		this.textElement.classList.add('timer-value')
 		this.parentElement.appendChild(this.textElement)
 
-		// this.parentElement.style.borderColor = this.id % 2 == 0 ? '#ffebd0' : '#2d201b'
-
 		Timer.containerElement.appendChild(this.parentElement)
 
 		this.updateText()
@@ -46,9 +44,8 @@ export class Timer {
 	public tick(timeDeltaMs: number): void {
 		this.timeLeftMs -= timeDeltaMs
 		if (this.timeLeftMs < 0) this.timeLeftMs = 0
+		if (this.timeLeftMs <= 0 && this.hasStarted) onLose(this.id)
 
 		this.updateText()
-
-		if (this.timeLeftMs <= 0 && this.hasStarted) onLose(this.id)
 	}
 }

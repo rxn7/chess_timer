@@ -1,3 +1,4 @@
+import { AudioHelper } from './audioHelper.js'
 import { Timer } from './timer.js'
 
 enum TimeLimit {
@@ -20,6 +21,7 @@ let isTicking: boolean = false
 
 function switchTimer() {
 	setCurrentTimer(+!currentTimerIdx)
+	AudioHelper.playSwitchSound()
 }
 
 function setCurrentTimer(id: number): void {
@@ -50,7 +52,9 @@ function start(timeLimit: TimeLimit) {
 
 export function onLose(timerIdx: number) {
 	isTicking = false
+	AudioHelper.playLoseSound()
 	alert(`Timer ${timerIdx} has ran out of time`)
+
 	timers.forEach(timer => {
 		timer.hasStarted = false
 	})
@@ -63,8 +67,13 @@ document.getElementById('start-bullet')?.addEventListener('click', () => start(T
 window.addEventListener('keyup', (e: KeyboardEvent) => {
 	switch (e.key) {
 		case ' ':
-			if (!isTicking) isTicking = true
-			else {
+			if (!isTicking) {
+				AudioHelper.playSwitchSound()
+				isTicking = true
+				timers.forEach(timer => {
+					timer.hasStarted = true
+				})
+			} else {
 				switchTimer()
 			}
 			break
