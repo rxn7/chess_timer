@@ -1,0 +1,15 @@
+{
+  "name": "chess_timer",
+  "version": "1.0.0",
+  "description": "Chess timer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rxn7/chess_timer.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "rxn7",
+  "license": "ISC",
+  "homepage": "https://github.com/rxn7/chess_timer#readme"
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta charset="UTF-8" />
+		<title>Chess Timer</title>
+	</head>
+	<body>
+		<div id="settings-panel">
+			<button id="start-bullet" onkeydown="(e) => e.preventDefault()">Start bullet</button>
+			<button id="start-blitz" onkeydown="(e) => e.preventDefault()">Start blitz</button>
+			<button id="start-rapid" onkeydown="(e) => e.preventDefault()">Start rapid</button>
+		</div>
+
+		<dvi id="timer-container"> </dvi>
+
+		<script src="src/main.js" type="module"></script>
+	</body>
+</html>
