@@ -15,10 +15,13 @@ const timers = [new Timer(), new Timer()];
 let currentTimerIdx = 0;
 const currentTimer = () => timers[currentTimerIdx];
 let previousFrameTime = 0;
-let isTicking = false;
-function switchTimer() {
-    setCurrentTimer(+!currentTimerIdx);
+export let isTicking = false;
+export function selectTimer(id) {
+    setCurrentTimer(id);
     AudioHelper.playSwitchSound();
+}
+export function switchTimer() {
+    selectTimer(+!currentTimerIdx);
 }
 function setCurrentTimer(id) {
     currentTimer().parentElement.classList.remove('current-timer');
@@ -33,7 +36,6 @@ function tick(timeNowMs) {
     previousFrameTime = timeNowMs;
 }
 function start(timeLimit) {
-    ;
     document.activeElement?.blur();
     setCurrentTimer(0);
     isTicking = false;

@@ -1,4 +1,4 @@
-import { onLose } from './main.js';
+import { isTicking, onLose, selectTimer } from './main.js';
 let idCounter = 0;
 export class Timer {
     constructor() {
@@ -8,6 +8,10 @@ export class Timer {
         this.id = idCounter++;
         this.parentElement = document.createElement('div');
         this.parentElement.classList.add('timer');
+        this.parentElement.addEventListener('click', () => {
+            if (!isTicking)
+                selectTimer(this.id);
+        });
         this.textElement = document.createElement('p');
         this.textElement.classList.add('timer-value');
         this.parentElement.appendChild(this.textElement);
