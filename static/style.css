@@ -36,6 +36,12 @@ body {
 	flex-direction: row;
 }
 
+@media only screen and (max-width: 1130px) {
+	#timer-container {
+		flex-direction: column;
+	}
+}
+
 .timer {
 	display: inline-block;
 	margin: 20px;
