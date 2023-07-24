@@ -14,7 +14,7 @@ const timeLimitValues: Map<TimeLimit, number> = new Map<TimeLimit, number>([
 ])
 
 const timers: Timer[] = [new Timer(), new Timer()]
-let currentTimerIdx: number = 0
+let currentTimerIdx: number = -1
 const currentTimer = (): Timer => timers[currentTimerIdx]
 let previousFrameTime: number = 0
 export let isTicking: boolean = false
@@ -29,7 +29,7 @@ export function switchTimer() {
 }
 
 function setCurrentTimer(id: number): void {
-	currentTimer().parentElement.classList.remove('current-timer')
+	currentTimer()?.parentElement.classList.remove('current-timer')
 	currentTimerIdx = id
 	currentTimer().parentElement.classList.add('current-timer')
 }
@@ -71,6 +71,11 @@ document.getElementById('start-bullet')?.addEventListener('click', () => start(T
 window.addEventListener('keyup', (e: KeyboardEvent) => {
 	switch (e.key) {
 		case ' ':
+			if (currentTimerIdx === -1) {
+				alert("Select a time limit first!");
+				return;
+			}
+
 			if (!isTicking) {
 				AudioHelper.playSwitchSound()
 				isTicking = true
