@@ -1,4 +1,4 @@
-import { onLose } from './main.js'
+import { isTicking, onLose, selectTimer } from './main.js'
 
 let idCounter: number = 0
 
@@ -15,6 +15,10 @@ export class Timer {
 
 		this.parentElement = document.createElement('div')
 		this.parentElement.classList.add('timer')
+		this.parentElement.addEventListener('click', () => {
+			if (!isTicking)
+				selectTimer(this.id);
+		})
 
 		this.textElement = document.createElement('p')
 		this.textElement.classList.add('timer-value')

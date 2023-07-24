@@ -17,11 +17,15 @@ const timers: Timer[] = [new Timer(), new Timer()]
 let currentTimerIdx: number = 0
 const currentTimer = (): Timer => timers[currentTimerIdx]
 let previousFrameTime: number = 0
-let isTicking: boolean = false
+export let isTicking: boolean = false
 
-function switchTimer() {
-	setCurrentTimer(+!currentTimerIdx)
+export function selectTimer(id: number): void {
+	setCurrentTimer(id)
 	AudioHelper.playSwitchSound()
+}
+
+export function switchTimer() {
+	selectTimer(+!currentTimerIdx);
 }
 
 function setCurrentTimer(id: number): void {
@@ -40,7 +44,7 @@ function tick(timeNowMs: DOMHighResTimeStamp) {
 }
 
 function start(timeLimit: TimeLimit) {
-	;(document.activeElement as HTMLElement)?.blur()
+	(document.activeElement as HTMLElement)?.blur()
 
 	setCurrentTimer(0)
 	isTicking = false
